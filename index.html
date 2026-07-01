@@ -40,9 +40,11 @@
       border-radius: 50%;
     }
 
-        /* CSS CÁC KIM */
+/* ---------------------------------------------------- */
+        /* CẤU TRÚC CHUNG CỦA KIM MẸ (Khung viền màu tối bên ngoài) */
+        /* ---------------------------------------------------- */
         .hand {
-            background: black;
+            background: #1a1a1a; /* Màu xám đen của thân kim */
             position: absolute;
             top: 50%;
             right: 50%; 
@@ -51,33 +53,57 @@
             transition: all 0.05s;
             transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
             border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Tạo bóng đổ nhẹ cho kim nổi lên */
         }
 
+        /* KIM GIỜ: Mập và Ngắn */
         .hour-hand { 
             width: 30%;   
-            height: 10px;  
-            background: green; 
-            margin-top: -5px; 
+            height: 12px;  /* Tăng độ mập lên một chút để thấy rõ vạch giữa */
+            margin-top: -6px; 
         }
 
+        /* KIM PHÚT: Thon và Dài */
         .minute-hand { 
             width: 45%;   
-            height: 6px;   
-            margin-top: -3px; 
+            height: 8px;   /* Tăng độ mập lên một chút */
+            margin-top: -4px; 
         }
 
+        /* KIM GIÂY: Giữ nguyên mảnh mai */
         .second-hand { 
             width: 48%; 
-            height: 8px; 
-            background: red; 
+            height: 3px; 
+            background: #ff3b30; 
             margin-top: -1.5px; 
         }
-.second-hand1 {
-  width: 55%;
-  height: 5px;
-  background:yellow;
-  margin-top: -0.5px;
-}
+
+        /* ---------------------------------------------------- */
+        /* PHẦN THÊM MỚI: TẠO VẠCH DẠ QUANG Ở GIỮA KIM GIỜ & PHÚT */
+        /* ---------------------------------------------------- */
+        
+        /* Cấu hình chung cho vạch dạ quang */
+        .hour-hand::after, .minute-hand::after {
+            content: '';
+            position: absolute;
+            background: #7fff00; /* Màu xanh dạ quang (Chartreuse). Bạn có thể đổi thành #ccff00 hoặc #e6ffff (trắng xanh) */
+            top: 50%;
+            left: 4px;   /* Cách đầu kim một khoảng */
+            right: 8px;  /* Cách đuôi kim một khoảng gần tâm */
+            transform: translateY(-50%); /* Căn chính giữa theo chiều dọc */
+            border-radius: 2px;
+            /* Tạo hiệu ứng phát sáng nhẹ bằng box-shadow */
+            box-shadow: 0 0 4px #7fff00; 
+        }
+
+        /* Tùy chỉnh độ dày (chiều cao) riêng của vạch dạ quang để vừa với từng kim */
+        .hour-hand::after {
+            height: 4px; /* Kim giờ to nên vạch dạ quang dày 4px (hai bên rìa đen còn lại 4px) */
+        }
+
+        .minute-hand::after {
+            height: 2px; /* Kim phút nhỏ hơn nên vạch dạ quang dày 2px */
+        }
   
         /* CSS CÁC SỐ */
         .number {
